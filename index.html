@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manikandan Saravanan – Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --bg: #ffffff;
+    --bg2: #f4f7fb;
+    --text: #2c3e50;
+    --text2: #5a7184;
+    --card: #ffffff;
+    --border: rgba(44,62,80,0.12);
+    --nav-bg: rgba(255,255,255,0.95);
+    --shadow: 0 4px 24px rgba(52,152,219,0.10);
+    --tag-bg: #eaf3fb;
+    --tag-text: #1a5a8a;
+    --toggle-bg: #e0eaf4;
+  }
+  [data-theme="dark"] {
+    --primary: #3498db;
+    --accent: #5dade2;
+    --bg: #141c24;
+    --bg2: #1a2535;
+    --text: #e8f0fe;
+    --text2: #90aac5;
+    --card: #1e2d40;
+    --border: rgba(52,152,219,0.18);
+    --nav-bg: rgba(20,28,36,0.97);
+    --shadow: 0 4px 24px rgba(0,0,0,0.35);
+    --tag-bg: #1a3248;
+    --tag-text: #7ec8e3;
+    --toggle-bg: #243345;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:var(--bg); color:var(--text); transition:background 0.35s,color 0.35s; line-height:1.7; overflow-x:hidden; }
+
+  /* KEYFRAMES */
+  @keyframes fadeInDown { from{opacity:0;transform:translateY(-22px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes fadeInUp   { from{opacity:0;transform:translateY(28px)}  to{opacity:1;transform:translateY(0)} }
+  @keyframes scaleIn    { from{opacity:0;transform:scale(0.7)} to{opacity:1;transform:scale(1)} }
+  @keyframes pulseRing  { 0%,100%{box-shadow:0 0 0 0 rgba(52,152,219,0.5)} 60%{box-shadow:0 0 0 14px rgba(52,152,219,0)} }
+  @keyframes floatY     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+  @keyframes orbit1     { from{transform:rotate(0deg) translateX(95px) rotate(0deg)} to{transform:rotate(360deg) translateX(95px) rotate(-360deg)} }
+  @keyframes orbit2     { from{transform:rotate(120deg) translateX(95px) rotate(-120deg)} to{transform:rotate(480deg) translateX(95px) rotate(-480deg)} }
+  @keyframes orbit3     { from{transform:rotate(240deg) translateX(95px) rotate(-240deg)} to{transform:rotate(600deg) translateX(95px) rotate(-600deg)} }
+  @keyframes shimmer    { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+  @keyframes tagPop     { 0%{opacity:0;transform:scale(0.65) translateY(10px)} 100%{opacity:1;transform:scale(1) translateY(0)} }
+  @keyframes cursorBlink { 0%,100%{border-color:rgba(52,152,219,0.9)} 50%{border-color:transparent} }
+  @keyframes scrollBounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(5px)} }
+  @keyframes gradientShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity:0; transform:translateY(38px); transition:opacity 0.7s cubic-bezier(.22,.68,0,1.1),transform 0.7s cubic-bezier(.22,.68,0,1.1); }
+  .reveal.in   { opacity:1; transform:translateY(0); }
+  .reveal-l    { opacity:0; transform:translateX(-38px); transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal-r    { opacity:0; transform:translateX(38px);  transition:opacity 0.7s ease,transform 0.7s ease; }
+  .reveal-l.in,.reveal-r.in { opacity:1; transform:translateX(0); }
+  .d1{transition-delay:0.08s} .d2{transition-delay:0.16s} .d3{transition-delay:0.24s} .d4{transition-delay:0.32s} .d5{transition-delay:0.40s}
+
+  /* NAV */
+  nav {
+    position:sticky; top:0; z-index:100;
+    background:var(--nav-bg); border-bottom:1px solid var(--border);
+    backdrop-filter:blur(14px); padding:0 1.25rem;
+    display:flex; align-items:center; justify-content:space-between; height:58px;
+    animation:fadeInDown 0.6s ease both;
+  }
+  .nav-logo { font-size:1.1rem; font-weight:700; color:var(--primary); }
+  .nav-logo span { color:var(--accent); }
+  .nav-links { display:flex; gap:1.5rem; list-style:none; }
+  .nav-links a {
+    font-size:0.85rem; font-weight:500; color:var(--text2); text-decoration:none;
+    position:relative; padding-bottom:3px; transition:color 0.2s;
+  }
+  .nav-links a::after {
+    content:''; position:absolute; bottom:0; left:0; width:0; height:2px;
+    background:var(--accent); border-radius:2px; transition:width 0.3s ease;
+  }
+  .nav-links a:hover { color:var(--accent); }
+  .nav-links a:hover::after,.nav-links a.active::after { width:100%; }
+  .nav-links a.active { color:var(--accent); }
+  .nav-right { display:flex; align-items:center; gap:0.75rem; }
+  .toggle-btn { background:var(--toggle-bg); border:none; border-radius:20px; width:48px; height:26px; cursor:pointer; position:relative; transition:background 0.3s; }
+  .toggle-btn::after { content:''; position:absolute; top:3px; left:3px; width:20px; height:20px; border-radius:50%; background:var(--accent); transition:transform 0.35s cubic-bezier(.34,1.56,.64,1); }
+  [data-theme="dark"] .toggle-btn::after { transform:translateX(22px); }
+  .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:4px; }
+  .hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; transition:all 0.3s; }
+  .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .hamburger.open span:nth-child(2){opacity:0}
+  .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  .mobile-menu { display:none; position:fixed; top:58px; left:0; right:0; background:var(--nav-bg); border-bottom:1px solid var(--border); padding:1rem 1.5rem; z-index:99; }
+  .mobile-menu.open { display:block; }
+  .mobile-menu a { display:block; padding:0.6rem 0; font-size:0.95rem; font-weight:500; color:var(--text2); text-decoration:none; border-bottom:1px solid var(--border); transition:color 0.2s,padding-left 0.2s; }
+  .mobile-menu a:hover { color:var(--accent); padding-left:8px; }
+  .mobile-menu a:last-child { border-bottom:none; }
+  @media(max-width:680px){ .nav-links{display:none;} .hamburger{display:flex;} }
+
+  /* HERO */
+  .hero {
+    background:linear-gradient(135deg,#1a252f 0%,#2c3e50 45%,#1a3a5c 100%);
+    background-size:300% 300%;
+    animation:gradientShift 10s ease infinite;
+    padding:4.5rem 1.5rem 3.5rem;
+    text-align:center; position:relative; overflow:hidden; min-height:520px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+  }
+  .hero-orb { position:absolute; border-radius:50%; pointer-events:none; }
+  .hero-orb-1 { width:280px;height:280px;top:-70px;right:-70px;background:rgba(52,152,219,0.13);animation:floatY 8s ease-in-out infinite; }
+  .hero-orb-2 { width:180px;height:180px;bottom:-50px;left:-50px;background:rgba(255,255,255,0.05);animation:floatY 10s ease-in-out 2s infinite; }
+  .hero-orb-3 { width:100px;height:100px;top:35%;left:8%;background:rgba(52,152,219,0.08);animation:floatY 6s ease-in-out 1s infinite; }
+  .orbit-wrap { position:absolute; top:50%; left:50%; width:0; height:0; pointer-events:none; }
+  .orbit-dot { position:absolute; width:7px;height:7px;border-radius:50%;background:rgba(52,152,219,0.4);margin:-3.5px; }
+  .orbit-dot:nth-child(1){ animation:orbit1 14s linear infinite; }
+  .orbit-dot:nth-child(2){ animation:orbit2 14s linear infinite; }
+  .orbit-dot:nth-child(3){ animation:orbit3 14s linear infinite; }
+
+  .avatar {
+    width:96px; height:96px; border-radius:50%;
+    background:rgba(52,152,219,0.22); border:3px solid rgba(52,152,219,0.75);
+    margin:0 auto 1.25rem; display:flex; align-items:center; justify-content:center;
+    font-size:1.9rem; font-weight:700; color:#fff;
+    animation:scaleIn 0.8s cubic-bezier(.34,1.56,.64,1) 0.2s both;
+    position:relative; z-index:1; cursor:default;
+    transition:transform 0.3s;
+  }
+  .avatar:hover { transform:scale(1.08) rotate(-3deg); animation:pulseRing 2s ease-in-out infinite; }
+  .hero h1 { font-size:1.85rem; font-weight:700; color:#fff; margin-bottom:0.4rem; animation:fadeInUp 0.7s ease 0.5s both; position:relative; z-index:1; }
+  .role-wrap { overflow:hidden; white-space:nowrap; display:inline-block; border-right:2px solid rgba(52,152,219,0.9); animation:cursorBlink 0.8s step-end 1s 6; margin-bottom:1.5rem; position:relative; z-index:1; }
+  .hero p.role { font-size:0.92rem; color:rgba(255,255,255,0.72); animation:fadeInUp 0.7s ease 0.65s both; white-space:nowrap; }
+  .hero-badges { display:flex; flex-wrap:wrap; justify-content:center; gap:0.5rem; margin-bottom:1.75rem; animation:fadeInUp 0.7s ease 1.6s both; position:relative; z-index:1; }
+  .hero-badge { background:rgba(255,255,255,0.11); border:1px solid rgba(255,255,255,0.22); color:#fff; border-radius:20px; padding:0.25rem 0.85rem; font-size:0.78rem; font-weight:500; transition:background 0.25s,transform 0.2s; cursor:default; }
+  .hero-badge:hover { background:rgba(52,152,219,0.38); transform:translateY(-3px); }
+  .hero-cta { display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; animation:fadeInUp 0.7s ease 1.8s both; position:relative; z-index:1; }
+
+  .btn-primary {
+    background:var(--accent); color:#fff; border:none;
+    padding:0.65rem 1.5rem; border-radius:8px; font-family:'Poppins',sans-serif;
+    font-size:0.88rem; font-weight:600; cursor:pointer; text-decoration:none;
+    position:relative; overflow:hidden;
+    transition:transform 0.2s, box-shadow 0.25s;
+  }
+  .btn-primary::before {
+    content:''; position:absolute; top:0; left:0; width:100%; height:100%;
+    background:linear-gradient(120deg,transparent 20%,rgba(255,255,255,0.28) 50%,transparent 80%);
+    transform:translateX(-100%); transition:transform 0.5s ease;
+  }
+  .btn-primary:hover { transform:translateY(-3px); box-shadow:0 8px 22px rgba(52,152,219,0.45); }
+  .btn-primary:hover::before { transform:translateX(100%); }
+  .btn-outline { background:transparent; color:#fff; border:1.5px solid rgba(255,255,255,0.45); padding:0.65rem 1.5rem; border-radius:8px; font-family:'Poppins',sans-serif; font-size:0.88rem; font-weight:500; cursor:pointer; text-decoration:none; transition:background 0.25s,border-color 0.25s,transform 0.2s; }
+  .btn-outline:hover { background:rgba(255,255,255,0.12); border-color:rgba(255,255,255,0.85); transform:translateY(-3px); }
+
+  .scroll-hint { margin-top:2rem; display:flex; flex-direction:column; align-items:center; gap:0.4rem; animation:fadeInUp 0.7s ease 2.2s both; position:relative; z-index:1; }
+  .scroll-hint span { font-size:0.68rem; color:rgba(255,255,255,0.45); letter-spacing:2px; text-transform:uppercase; }
+  .scroll-mouse { width:18px; height:28px; border:2px solid rgba(255,255,255,0.35); border-radius:10px; position:relative; }
+  .scroll-mouse::after { content:''; position:absolute; top:5px; left:50%; width:3px; height:3px; border-radius:50%; background:rgba(255,255,255,0.7); animation:scrollBounce 1.8s ease-in-out infinite; }
+
+  /* SECTIONS */
+  section { padding:2.75rem 1.25rem; }
+  section:nth-child(even) { background:var(--bg2); }
+  .section-title { font-size:1.15rem; font-weight:700; color:var(--primary); margin-bottom:1.5rem; padding-bottom:0.5rem; border-bottom:2.5px solid var(--accent); display:inline-block; }
+
+  /* STATS */
+  .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:0.75rem; }
+  .stat-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 0.75rem; text-align:center; box-shadow:var(--shadow); transition:transform 0.3s,box-shadow 0.3s; cursor:default; }
+  .stat-card:hover { transform:translateY(-6px) scale(1.04); box-shadow:0 14px 34px rgba(52,152,219,0.2); }
+  .stat-num { font-size:1.5rem; font-weight:700; color:var(--accent); }
+  .stat-label { font-size:0.72rem; color:var(--text2); margin-top:0.2rem; line-height:1.3; }
+
+  /* SKILL BARS */
+  .skill-bar-wrap { margin-bottom:1rem; }
+  .skill-bar-label { display:flex; justify-content:space-between; font-size:0.82rem; margin-bottom:0.35rem; font-weight:500; color:var(--text); }
+  .skill-bar-track { background:var(--border); border-radius:6px; height:9px; overflow:hidden; }
+  .skill-bar-fill { height:100%; border-radius:6px; background:linear-gradient(90deg,var(--primary),var(--accent)); width:0; transition:width 1.3s cubic-bezier(.22,.68,0,1.1); }
+
+  /* TAGS */
+  .skills-group { margin-bottom:1.2rem; }
+  .skills-group-title { font-size:0.78rem; font-weight:600; color:var(--text2); text-transform:uppercase; letter-spacing:0.8px; margin-bottom:0.6rem; }
+  .tags { display:flex; flex-wrap:wrap; gap:0.45rem; }
+  .tag { background:var(--tag-bg); color:var(--tag-text); padding:0.28rem 0.75rem; border-radius:20px; font-size:0.8rem; font-weight:500; border:1px solid rgba(52,152,219,0.18); opacity:0; transition:transform 0.25s,box-shadow 0.25s; }
+  .tag.popped { animation:tagPop 0.45s cubic-bezier(.34,1.56,.64,1) forwards; }
+  .tag.accent { background:var(--accent); color:#fff; border-color:var(--accent); }
+  .tag:hover { transform:translateY(-3px) scale(1.07); box-shadow:0 5px 14px rgba(52,152,219,0.28); }
+
+  /* TIMELINE */
+  .timeline { position:relative; }
+  .timeline::before { content:''; position:absolute; left:14px; top:0; bottom:0; width:2px; background:var(--border); transform-origin:top; transform:scaleY(0); transition:transform 1.4s ease; }
+  .timeline.in::before { transform:scaleY(1); }
+  .exp-card { position:relative; padding-left:2.5rem; margin-bottom:1.6rem; }
+  .exp-dot { position:absolute; left:6px; top:6px; width:18px; height:18px; border-radius:50%; background:var(--accent); border:3px solid var(--bg); box-shadow:0 0 0 2px var(--accent); transform:scale(0); transition:transform 0.45s cubic-bezier(.34,1.56,.64,1); }
+  .exp-card.in .exp-dot { transform:scale(1); }
+  .exp-inner { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 1.1rem; box-shadow:var(--shadow); transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s; }
+  .exp-inner:hover { transform:translateX(5px); box-shadow:0 10px 30px rgba(52,152,219,0.16); border-color:rgba(52,152,219,0.4); }
+  .exp-header { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:0.3rem; margin-bottom:0.3rem; }
+  .exp-title { font-size:0.95rem; font-weight:600; color:var(--text); }
+  .exp-period { font-size:0.72rem; font-weight:600; color:var(--accent); background:var(--tag-bg); padding:0.2rem 0.6rem; border-radius:20px; white-space:nowrap; }
+  .exp-company { font-size:0.82rem; color:var(--text2); margin-bottom:0.65rem; font-weight:500; }
+  .exp-list { list-style:none; }
+  .exp-list li { font-size:0.83rem; color:var(--text2); padding:0.2rem 0 0.2rem 1.1rem; position:relative; line-height:1.5; }
+  .exp-list li::before { content:'▸'; position:absolute; left:0; color:var(--accent); font-size:0.75rem; }
+
+  /* ACHIEVEMENTS */
+  .achieve-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; }
+  .achieve-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1rem 0.9rem; box-shadow:var(--shadow); text-align:center; transition:transform 0.3s,box-shadow 0.3s; position:relative; overflow:hidden; cursor:default; }
+  .achieve-card::after { content:''; position:absolute; inset:0; border-radius:12px; background:linear-gradient(135deg,rgba(52,152,219,0.08),transparent); opacity:0; transition:opacity 0.3s; }
+  .achieve-card:hover { transform:translateY(-7px); box-shadow:0 16px 38px rgba(52,152,219,0.2); }
+  .achieve-card:hover::after { opacity:1; }
+  .achieve-icon { font-size:1.5rem; margin-bottom:0.4rem; }
+  .achieve-num { font-size:1.3rem; font-weight:700; color:var(--accent); }
+  .achieve-label { font-size:0.75rem; color:var(--text2); line-height:1.35; margin-top:0.15rem; }
+
+  /* EDUCATION */
+  .edu-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.1rem; box-shadow:var(--shadow); display:flex; gap:1rem; align-items:flex-start; transition:transform 0.3s,box-shadow 0.3s; }
+  .edu-card:hover { transform:translateY(-5px); box-shadow:0 12px 32px rgba(52,152,219,0.16); }
+  .edu-icon { width:44px;height:44px;border-radius:10px;flex-shrink:0;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;font-size:1.3rem; }
+  .edu-degree { font-size:0.93rem; font-weight:600; color:var(--text); }
+  .edu-school { font-size:0.8rem; color:var(--text2); margin-top:0.2rem; }
+  .edu-period { font-size:0.72rem; color:var(--accent); font-weight:600; margin-top:0.3rem; }
+
+  /* CONTACT */
+  .contact-grid { display:flex; flex-direction:column; gap:0.75rem; }
+  .contact-item { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:0.9rem 1.1rem; display:flex; align-items:center; gap:0.9rem; box-shadow:var(--shadow); text-decoration:none; position:relative; overflow:hidden; transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s; }
+  .contact-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:var(--accent); transform:scaleY(0); transform-origin:bottom; transition:transform 0.35s ease; border-radius:0 3px 3px 0; }
+  .contact-item:hover { transform:translateX(7px); box-shadow:0 8px 26px rgba(52,152,219,0.16); border-color:rgba(52,152,219,0.35); }
+  .contact-item:hover::before { transform:scaleY(1); }
+  .contact-icon { width:38px;height:38px;border-radius:10px;flex-shrink:0;background:var(--tag-bg);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:transform 0.3s; }
+  .contact-item:hover .contact-icon { transform:scale(1.18) rotate(-6deg); }
+  .contact-label { font-size:0.72rem; color:var(--text2); font-weight:500; }
+  .contact-value { font-size:0.88rem; font-weight:600; color:var(--text); word-break:break-all; }
+
+  /* FOOTER */
+  footer { background:var(--primary); color:rgba(255,255,255,0.6); text-align:center; padding:1.75rem 1rem; font-size:0.8rem; }
+  footer strong { color:#fff; }
+  .footer-dots { display:flex; justify-content:center; gap:7px; margin-bottom:0.8rem; }
+  .footer-dot { width:7px;height:7px;border-radius:50%;background:rgba(52,152,219,0.4); animation:pulseRing 2.5s ease-in-out infinite; }
+  .footer-dot:nth-child(2){ animation-delay:0.35s; }
+  .footer-dot:nth-child(3){ animation-delay:0.7s; background:rgba(52,152,219,0.75); }
+
+  /* CURSOR GLOW */
+  .cursor-glow { position:fixed;width:320px;height:320px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(52,152,219,0.07) 0%,transparent 70%);transform:translate(-50%,-50%);z-index:0;transition:opacity 0.3s;opacity:0; }
+
+  /* RESPONSIVE */
+  @media(min-width:600px){ .hero{padding:5rem 2rem 4rem;} .hero h1{font-size:2.2rem;} section{padding:3rem 2rem;} .achieve-grid{grid-template-columns:repeat(4,1fr);} .contact-grid{display:grid;grid-template-columns:1fr 1fr;} }
+  @media(min-width:900px){ nav{padding:0 3rem;} section{padding:3.5rem 3rem;} }
+</style>
+</head>
+<body>
+
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Mani<span>kandan</span></span>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="toggle-btn" id="themeToggle" title="Toggle theme"></button>
+    <button class="hamburger" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="closeMobile()">About</a>
+  <a href="#skills" onclick="closeMobile()">Skills</a>
+  <a href="#experience" onclick="closeMobile()">Experience</a>
+  <a href="#education" onclick="closeMobile()">Education</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="orbit-wrap">
+    <div class="orbit-dot"></div>
+    <div class="orbit-dot"></div>
+    <div class="orbit-dot"></div>
+  </div>
+  <div class="avatar">MS</div>
+  <h1>Manikandan Saravanan</h1>
+  <div class="role-wrap">
+    <p class="role">Angular Front-End &amp; .NET Core Full-Stack Developer</p>
+  </div>
+  <div class="hero-badges">
+    <span class="hero-badge">Angular</span>
+    <span class="hero-badge">TypeScript</span>
+    <span class="hero-badge">.NET Core</span>
+    <span class="hero-badge">SQL Server</span>
+    <span class="hero-badge">REST APIs</span>
+  </div>
+  <div class="hero-cta">
+    <a href="#contact" class="btn-primary">Get in Touch</a>
+    <a href="#experience" class="btn-outline">View Experience</a>
+  </div>
+  <div class="scroll-hint">
+    <span>Scroll</span>
+    <div class="scroll-mouse"></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-title reveal">About Me</div>
+  <p class="reveal d1" style="font-size:0.9rem;color:var(--text2);margin-bottom:1.5rem;line-height:1.8;">
+    Angular Front-End &amp; .NET Core Full-Stack Developer with <strong style="color:var(--primary)">1.5+ years</strong> of experience delivering scalable, high-performance web applications. Skilled in building enterprise-grade solutions with a focus on performance and user experience.
+  </p>
+  <div class="stats-grid">
+    <div class="stat-card reveal d2"><div class="stat-num"><span class="ctr" data-t="1.5" data-s="+" data-d="1">0</span></div><div class="stat-label">Years Experience</div></div>
+    <div class="stat-card reveal d3"><div class="stat-num"><span class="ctr" data-t="4" data-s="" data-d="0">0</span></div><div class="stat-label">Companies</div></div>
+    <div class="stat-card reveal d4"><div class="stat-num"><span class="ctr" data-t="30" data-s="%" data-d="0">0</span></div><div class="stat-label">Perf. Boost</div></div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-title reveal">Technical Skills</div>
+  <div class="reveal d1" style="margin-bottom:1.6rem;">
+    <div class="skill-bar-wrap"><div class="skill-bar-label"><span>Angular / TypeScript</span><span>90%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-w="90%"></div></div></div>
+    <div class="skill-bar-wrap"><div class="skill-bar-label"><span>JavaScript / HTML / CSS</span><span>85%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-w="85%"></div></div></div>
+    <div class="skill-bar-wrap"><div class="skill-bar-label"><span>ASP.NET Core Web API</span><span>80%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-w="80%"></div></div></div>
+    <div class="skill-bar-wrap"><div class="skill-bar-label"><span>SQL Server</span><span>75%</span></div><div class="skill-bar-track"><div class="skill-bar-fill" data-w="75%"></div></div></div>
+  </div>
+  <div class="skills-group reveal d2">
+    <div class="skills-group-title">Frontend</div>
+    <div class="tags"><span class="tag accent">Angular</span><span class="tag">TypeScript</span><span class="tag">JavaScript</span><span class="tag">HTML5</span><span class="tag">CSS3</span></div>
+  </div>
+  <div class="skills-group reveal d3">
+    <div class="skills-group-title">Backend</div>
+    <div class="tags"><span class="tag accent">ASP.NET Core Web API</span><span class="tag">C#</span><span class="tag">REST APIs</span><span class="tag">IIS Server</span></div>
+  </div>
+  <div class="skills-group reveal d4">
+    <div class="skills-group-title">Database &amp; Tools</div>
+    <div class="tags"><span class="tag">SQL Server</span><span class="tag">SSMS</span><span class="tag">Postman</span><span class="tag">Git &amp; GitHub</span><span class="tag">Jira</span></div>
+  </div>
+  <div class="skills-group reveal d5">
+    <div class="skills-group-title">Methodologies</div>
+    <div class="tags"><span class="tag">Agile</span><span class="tag">Scrum</span></div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-title reveal">Work Experience</div>
+  <div class="timeline" id="timeline">
+    <div class="exp-card reveal d1">
+      <div class="exp-dot"></div>
+      <div class="exp-inner">
+        <div class="exp-header"><span class="exp-title">Software Intern</span><span class="exp-period">Mar – Sep 2025</span></div>
+        <div class="exp-company">NEXA Office Infosystems LLP</div>
+        <ul class="exp-list">
+          <li>Developed Access &amp; User Management modules for ACM, CPMS, UMM, and NoCode platforms using Angular and .NET Core Web API.</li>
+          <li>Hosted APIs via IIS Server, reducing integration time by 25%.</li>
+          <li>Managed tasks using Jira, improving project tracking efficiency.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card reveal d2">
+      <div class="exp-dot"></div>
+      <div class="exp-inner">
+        <div class="exp-header"><span class="exp-title">Junior Software Developer</span><span class="exp-period">Sep – Jan 2025</span></div>
+        <div class="exp-company">Sophista Software Solutions Pvt. Ltd.</div>
+        <ul class="exp-list">
+          <li>Enhanced ProjAct Web Application with Angular, .NET Core Web API, and SQL Server.</li>
+          <li>Optimized dashboard rendering by 30%.</li>
+          <li>Developed biometric tracking and Excel report generation features.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card reveal d3">
+      <div class="exp-dot"></div>
+      <div class="exp-inner">
+        <div class="exp-header"><span class="exp-title">Trainee Developer</span><span class="exp-period">Jul – Sep 2024</span></div>
+        <div class="exp-company">Sophista Software Solutions Pvt. Ltd.</div>
+        <ul class="exp-list">
+          <li>Developed UI features for a Write-Off Web App using Angular 17, JSON Server, and ng-select.</li>
+          <li>Implemented drag-scroll and multi-select tables, improving input efficiency by 25%.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-card reveal d4">
+      <div class="exp-dot"></div>
+      <div class="exp-inner">
+        <div class="exp-header"><span class="exp-title">Angular Developer Intern</span><span class="exp-period">Jan – Apr 2024</span></div>
+        <div class="exp-company">V2E Technologies</div>
+        <ul class="exp-list">
+          <li>Developed Sigma Document Management System with Angular, improving document processing efficiency by 20%.</li>
+          <li>Integrated APIs for real-time document retrieval and processing.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section>
+  <div class="section-title reveal">Key Achievements</div>
+  <div class="achieve-grid">
+    <div class="achieve-card reveal d1"><div class="achieve-icon">⚡</div><div class="achieve-num"><span class="ctr" data-t="30" data-s="%" data-d="0">0</span></div><div class="achieve-label">Dashboard render improvement</div></div>
+    <div class="achieve-card reveal d2"><div class="achieve-icon">🔗</div><div class="achieve-num"><span class="ctr" data-t="25" data-s="%" data-d="0">0</span></div><div class="achieve-label">API integration time reduced</div></div>
+    <div class="achieve-card reveal d3"><div class="achieve-icon">📋</div><div class="achieve-num"><span class="ctr" data-t="25" data-s="%" data-d="0">0</span></div><div class="achieve-label">Input efficiency boost</div></div>
+    <div class="achieve-card reveal d4"><div class="achieve-icon">📄</div><div class="achieve-num"><span class="ctr" data-t="20" data-s="%" data-d="0">0</span></div><div class="achieve-label">Document processing speed</div></div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-title reveal">Education</div>
+  <div class="edu-card reveal d1">
+    <div class="edu-icon">🎓</div>
+    <div>
+      <div class="edu-degree">B.E. in Computer Science</div>
+      <div class="edu-school">Dhanalakshmi Srinivasan Institute of Technology, Trichy</div>
+      <div class="edu-period">Jun 2018 – Jun 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-title reveal">Contact</div>
+  <div class="contact-grid">
+    <a class="contact-item reveal d1" href="tel:+919047353282">
+      <div class="contact-icon">📞</div>
+      <div><div class="contact-label">Phone</div><div class="contact-value">+91 90473 53282</div></div>
+    </a>
+    <a class="contact-item reveal d2" href="mailto:Manikandans2272@gmail.com">
+      <div class="contact-icon">✉️</div>
+      <div><div class="contact-label">Email</div><div class="contact-value">Manikandans2272@gmail.com</div></div>
+    </a>
+    <div class="contact-item reveal d3">
+      <div class="contact-icon">📍</div>
+      <div><div class="contact-label">Location</div><div class="contact-value">Manamelkudi, Pudukkottai, Tamil Nadu</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-dots"><div class="footer-dot"></div><div class="footer-dot"></div><div class="footer-dot"></div></div>
+  <p>Designed &amp; built by <strong>Manikandan Saravanan</strong> · 2025</p>
+  <p style="margin-top:0.35rem;font-size:0.75rem;">Angular · .NET Core · Full-Stack Developer</p>
+</footer>
+
+<script>
+/* THEME */
+const html = document.documentElement;
+const saved = localStorage.getItem('theme') || 'light';
+html.setAttribute('data-theme', saved);
+document.getElementById('themeToggle').addEventListener('click', () => {
+  const next = html.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+});
+
+/* HAMBURGER */
+const menuBtn = document.getElementById('menuBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', () => { menuBtn.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+function closeMobile() { mobileMenu.classList.remove('open'); menuBtn.classList.remove('open'); }
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior:'smooth' });
+    closeMobile();
+  });
+});
+
+/* SCROLL REVEAL */
+const revObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(el => revObs.observe(el));
+
+/* TIMELINE LINE */
+const tl = document.getElementById('timeline');
+const tlObs = new IntersectionObserver(e => { if(e[0].isIntersecting){ tl.classList.add('in'); tlObs.disconnect(); } },{ threshold:0.05 });
+if(tl) tlObs.observe(tl);
+
+/* COUNTER */
+function runCounter(el) {
+  const target = parseFloat(el.dataset.t);
+  const suffix = el.dataset.s || '';
+  const decimals = parseInt(el.dataset.d) || 0;
+  const dur = 1500, start = performance.now();
+  (function tick(now) {
+    const p = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    el.textContent = (target * ease).toFixed(decimals) + suffix;
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = target.toFixed(decimals) + suffix;
+  })(start);
+}
+const ctrObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ runCounter(e.target); ctrObs.unobserve(e.target); } });
+}, { threshold:0.6 });
+document.querySelectorAll('.ctr').forEach(el => ctrObs.observe(el));
+
+/* SKILL BARS */
+const barObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.style.width = e.target.dataset.w; barObs.unobserve(e.target); } });
+}, { threshold:0.4 });
+document.querySelectorAll('.skill-bar-fill').forEach(el => barObs.observe(el));
+
+/* TAG POP */
+const tagGroupObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.querySelectorAll('.tag').forEach((tag, i) => {
+        setTimeout(() => tag.classList.add('popped'), i * 75);
+      });
+      tagGroupObs.unobserve(e.target);
+    }
+  });
+}, { threshold:0.3 });
+document.querySelectorAll('.skills-group').forEach(el => tagGroupObs.observe(el));
+
+/* ACTIVE NAV */
+const sections = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('#navLinks a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  navAs.forEach(a => { a.classList.toggle('active', a.getAttribute('href') === '#' + cur); });
+}, { passive:true });
+
+/* CURSOR GLOW */
+const glow = document.getElementById('cursorGlow');
+let mx=0, my=0, cx=0, cy=0;
+document.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; glow.style.opacity='1'; });
+document.addEventListener('mouseleave', () => glow.style.opacity='0');
+(function animGlow() {
+  cx += (mx - cx) * 0.1; cy += (my - cy) * 0.1;
+  glow.style.left = cx + 'px'; glow.style.top = cy + 'px';
+  requestAnimationFrame(animGlow);
+})();
+</script>
+</body>
+</html>
