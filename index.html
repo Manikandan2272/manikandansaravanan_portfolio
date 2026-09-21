@@ -996,6 +996,272 @@
       font-size: 0.9rem;
     }
 
+    /* PROJECTS */
+    .project-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(52, 152, 219, 0.18);
+      border-color: var(--accent);
+    }
+
+    .project-glow-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 140px;
+      background: radial-gradient(ellipse at 50% 0%, rgba(52, 152, 219, 0.15), transparent 70%);
+      pointer-events: none;
+      opacity: 0.6;
+      transition: opacity 0.35s ease;
+    }
+
+    .project-card:hover .project-glow-layer {
+      opacity: 1;
+    }
+
+    .project-card-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .project-meta-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .project-badge {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.76rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      background: var(--tag-bg);
+      color: var(--accent);
+      padding: 0.28rem 0.8rem;
+      border-radius: 9999px;
+      border: 1px solid rgba(52, 152, 219, 0.2);
+    }
+
+    .project-version {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text2);
+    }
+
+    .pulse-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      display: inline-block;
+      animation: pulseGreen 2s infinite ease-in-out;
+    }
+
+    @keyframes pulseGreen {
+
+      0%,
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      50% {
+        transform: scale(1.3);
+        opacity: 0.7;
+      }
+    }
+
+    .project-title {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .project-role {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-top: 0.35rem;
+    }
+
+    .project-desc {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--text2);
+      text-align: justify;
+      margin: 0;
+    }
+
+    .project-highlights {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .project-highlights-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      color: var(--text);
+      margin-bottom: 0.65rem;
+    }
+
+    .project-highlights-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+
+    .project-highlights-list li {
+      display: flex;
+      align-items: flex-start;
+      font-size: 0.92rem;
+      line-height: 1.5;
+      color: var(--text2);
+    }
+
+    .project-highlights-list li i {
+      font-size: 1rem;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+
+    .project-tech-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .project-tech-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text2);
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .project-pill {
+      display: inline-flex;
+      align-items: center;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      border: 1px solid rgba(52, 152, 219, 0.22);
+      border-radius: 9999px;
+      padding: 0.32rem 0.85rem;
+      font-size: 0.83rem;
+      font-weight: 500;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+
+    .project-pill:hover {
+      background: var(--accent);
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(52, 152, 219, 0.25);
+      border-color: var(--accent);
+    }
+
+    .project-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn-proj {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.65rem 1.35rem;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      cursor: pointer;
+    }
+
+    .btn-proj-primary {
+      background: var(--accent);
+      color: #ffffff;
+      border: 1px solid var(--accent);
+    }
+
+    .btn-proj-primary:hover {
+      background: #2980b9;
+      color: #ffffff;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(52, 152, 219, 0.3);
+    }
+
+    .btn-proj-secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border);
+    }
+
+    .btn-proj-secondary:hover {
+      background: var(--tag-bg);
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 576px) {
+      .project-card {
+        padding: 1.35rem 1.15rem;
+      }
+
+      .project-title {
+        font-size: 1.25rem;
+      }
+
+      .project-actions {
+        flex-direction: column;
+      }
+
+      .btn-proj {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
     /* ACHIEVEMENTS */
 
     .achieve-card {
@@ -1101,6 +1367,7 @@
       .contact-grid {
         grid-template-columns: repeat(3, 1fr);
       }
+
       .contact-wide {
         grid-column: span 1;
       }
@@ -1238,25 +1505,25 @@
        Desktop Micro-Interactions & Hover Animations (Applies above 768px)
        ========================================================================== */
     @media (min-width: 768px) {
-      
+
       /* 1. Card Elevation Effect */
       /* Target your Technical Skills, Experience cards, and Contact cards */
-      .tag, 
-      .exp-inner, 
+      .tag,
+      .exp-inner,
       .edu-card,
       .contact-item {
         cursor: pointer;
-        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
-                    box-shadow 0.4s ease, border-color 0.4s ease;
+        transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 0.4s ease, border-color 0.4s ease;
       }
 
-      .tag:hover, 
-      .exp-inner:hover, 
+      .tag:hover,
+      .exp-inner:hover,
       .edu-card:hover,
       .contact-item:hover {
         transform: translateY(-5px);
         /* Softens and expands the drop shadow to simulate realistic physical lifting */
-        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15); 
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
         border-color: rgba(52, 152, 219, 0.35);
       }
 
@@ -1279,11 +1546,13 @@
       .btn-primary:hover,
       .btn-outline:hover {
         transform: translateY(-2px);
-        filter: brightness(1.1); /* Subtle color brightening effect */
+        filter: brightness(1.1);
+        /* Subtle color brightening effect */
       }
-      
+
       .btn-primary:hover::before {
-        transform: translateX(100%); /* Retain the cool background shine overlay effect */
+        transform: translateX(100%);
+        /* Retain the cool background shine overlay effect */
       }
 
       .btn-outline:hover {
@@ -1305,13 +1574,15 @@
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#education">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-right">
       <button class="theme-icon-btn" id="themeToggle" aria-label="Toggle theme">
         <!-- Sun SVG (Visible in Dark Mode) -->
-        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <circle cx="12" cy="12" r="4"></circle>
           <path d="M12 2v2"></path>
           <path d="M12 20v2"></path>
@@ -1323,7 +1594,8 @@
           <path d="m19.07 4.93-1.41 1.41"></path>
         </svg>
         <!-- Moon SVG (Visible in Light Mode) -->
-        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
         </svg>
       </button>
@@ -1334,6 +1606,7 @@
     <a href="#about" onclick="closeMobile()">About</a>
     <a href="#skills" onclick="closeMobile()">Skills</a>
     <a href="#experience" onclick="closeMobile()">Experience</a>
+    <a href="#projects" onclick="closeMobile()">Projects</a>
     <a href="#education" onclick="closeMobile()">Education</a>
     <a href="#contact" onclick="closeMobile()">Contact</a>
   </div>
@@ -1363,7 +1636,9 @@
     <div class="hero-cta d-flex gap-3 align-items-center justify-content-center">
       <a href="#contact" class="btn-primary">Get in Touch</a>
       <a href="S_Manikandan.pdf" class="btn-outline" download>
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 0.35rem; vertical-align: -2px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+          style="margin-right: 0.35rem; vertical-align: -2px;">
           <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
           <polyline points="7 10 12 15 17 10"></polyline>
           <line x1="12" x2="12" y1="15" y2="3"></line>
@@ -1470,7 +1745,8 @@
         <div class="exp-card reveal d1">
           <div class="exp-dot"></div>
           <div class="exp-inner">
-            <div class="exp-header"><span class="exp-title">Software Intern</span><span class="exp-period">Mar 2025 – Sep
+            <div class="exp-header"><span class="exp-title">Software Intern</span><span class="exp-period">Mar 2025 –
+                Sep
                 2025</span></div>
             <div class="exp-company">NEXA Office Infosystems LLP</div>
             <ul class="exp-list">
@@ -1517,6 +1793,97 @@
                 20%.</li>
               <li>Integrated APIs for real-time document retrieval and processing.</li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-title reveal">Featured Projects</div>
+      <div class="row g-4">
+        <div class="col-12 col-lg-10 mx-auto">
+          <div class="project-card reveal d1">
+            <div class="project-glow-layer" aria-hidden="true"></div>
+            <div class="project-card-inner">
+              <div class="project-header">
+                <div class="project-meta-top">
+                  <span class="project-badge">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                      stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                      class="me-1">
+                      <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                      <line x1="8" y1="21" x2="16" y2="21"></line>
+                      <line x1="12" y1="17" x2="12" y2="21"></line>
+                    </svg>
+                    Automation Script
+                  </span>
+                  <div class="project-version">
+                    <span class="pulse-dot"></span>
+                    <span>After Effects 2026</span>
+                  </div>
+                </div>
+                <h3 class="project-title">After Effects 2026 — Layer Tools Script</h3>
+                <div class="project-role">
+                  <i class="bi bi-code-square me-1"></i> Automation Script &amp; ScriptUI Panel Developer
+                </div>
+              </div>
+
+              <p class="project-desc">
+                Developed a ScriptUI automation panel for Adobe After Effects 2026 that streamlines Null, Solid, and
+                Adjustment Layer creation. Implemented intelligent and persistent layer numbering, native Solid Settings
+                integration, automatic layer-stack positioning, Adjustment Layer configuration, error handling, and undo
+                management using ExtendScript/JavaScript.
+              </p>
+
+              <div class="project-highlights">
+                <div class="project-highlights-title">
+                  <i class="bi bi-stars text-warning me-1"></i> Key Highlights
+                </div>
+                <ul class="project-highlights-list m-0 p-0">
+                  <li>
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Intelligent layer numbering &amp; persistent configuration across sessions</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Automatic layer-stack positioning and native Solid Settings integration</span>
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle-fill text-success me-2"></i>
+                    <span>Robust error handling and ExtendScript undo group management</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="project-tech-stack">
+                <div class="project-tech-title">Tech Stack:</div>
+                <div class="project-tags">
+                  <span class="project-pill">ExtendScript</span>
+                  <span class="project-pill">JavaScript</span>
+                  <span class="project-pill">Adobe After Effects API</span>
+                  <span class="project-pill">ScriptUI</span>
+                  <span class="project-pill">UX Automation</span>
+                </div>
+              </div>
+
+              <div class="project-actions">
+                <a href="https://github.com/Manikandan2272/ae-layer-tools.git" target="_blank" rel="noopener noreferrer"
+                  class="btn-proj btn-proj-primary" aria-label="View After Effects Layer Tools Script on GitHub">
+                  <i class="bi bi-github"></i>
+                  <span>GitHub Repository</span>
+                  <i class="bi bi-arrow-up-right small"></i>
+                </a>
+                <!-- <a href="javascript:void(0)" class="btn-proj btn-proj-secondary"
+                  aria-label="Watch Video Demo of After Effects Script">
+                  <i class="bi bi-play-circle-fill"></i>
+                  <span>Video Demo</span>
+                  <i class="bi bi-box-arrow-up-right small"></i>
+                </a> -->
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1594,8 +1961,11 @@
       <div class="section-title reveal">Education</div>
       <div class="edu-card reveal d1">
         <div class="edu-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
-            <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"></path>
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
+            <path
+              d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z">
+            </path>
             <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
           </svg>
         </div>
@@ -1615,8 +1985,12 @@
       <div class="contact-grid">
         <a class="contact-item reveal d1" href="tel:+919047353282">
           <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-primary">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+              </path>
             </svg>
           </div>
           <div>
@@ -1627,7 +2001,8 @@
 
         <a class="contact-item reveal d2" href="mailto:Manikandans2272@gmail.com">
           <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-danger">
               <rect width="20" height="16" x="2" y="4" rx="2"></rect>
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
             </svg>
@@ -1640,7 +2015,9 @@
 
         <div class="contact-item contact-wide reveal d3">
           <div class="contact-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-success">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              class="text-success">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
