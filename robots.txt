@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://manikandansaravanan.github.io/sitemap.xml

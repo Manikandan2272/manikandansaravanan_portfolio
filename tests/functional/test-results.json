@@ -1,0 +1,145 @@
+{
+  "total": 23,
+  "passed": 23,
+  "failed": 0,
+  "results": [
+    {
+      "id": "TEST-001",
+      "name": "Page loads with HTTP 200 and valid title",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-002",
+      "name": "Favicon link is present and loads with HTTP 200",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-003",
+      "name": "Resume PDF download link exists and points to valid file",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-004",
+      "name": "Zero unhandled JavaScript errors and console errors on initial load",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-005",
+      "name": "Theme toggle switches data-theme and persists in localStorage",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-006",
+      "name": "Desktop navbar links smooth scroll to correct sections",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-007",
+      "name": "URL hash updates on navigation click (Deep Linking & History)",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-008",
+      "name": "Active nav class updates correctly when scrolling to bottom sections",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-009",
+      "name": "Mobile viewport (375x667) collapses desktop nav and opens mobile menu drawer",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-010",
+      "name": "No horizontal overflow on mobile viewports (320px, 375px, 412px)",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-011",
+      "name": "Hero role title does not clip or overflow on narrow screens (320px)",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-012",
+      "name": "Document structure contains semantic <main> landmark",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-013",
+      "name": "Document contains skip to content navigation link for keyboard users",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-014",
+      "name": "Heading hierarchy has logical progression without skipping levels",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-015",
+      "name": "Interactive controls have visible focus indicators (:focus-visible)",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-016",
+      "name": "Mobile menu button has aria-expanded state and keyboard escape dismiss",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-017",
+      "name": "Theme toggle has accessible aria-label and reflects state",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-018",
+      "name": "Styles support prefers-reduced-motion media query",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-019",
+      "name": "HTML container divs are properly paired and closed",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-020",
+      "name": "External GitHub repository link points to direct URL without .git redirect",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-021",
+      "name": "Cursor glow animation does not run infinitely on touch-only mobile devices",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-022",
+      "name": "Theme toggle handles blocked localStorage gracefully without uncaught exceptions",
+      "status": "PASSED",
+      "error": null
+    },
+    {
+      "id": "TEST-023",
+      "name": "Anchor click listener handles empty href=\"#\" without throwing DOMException",
+      "status": "PASSED",
+      "error": null
+    }
+  ]
+}
